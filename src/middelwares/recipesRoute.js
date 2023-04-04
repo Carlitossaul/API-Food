@@ -12,16 +12,13 @@ const getDetail = async (req, res) => {
 
   try {
     let recipe = {
-      id: response.data.id,
-      title: response.data.title,
-      servings: response.data.servings,
-      readyInMinutes: response.data.readyInMinutes,
-      sourceUrl: response.data.sourceUrl,
-      // extendedIngredients: response.data.extendedIngredients, //array
-      instructions: response.data.instructions,
-      analyzedInstructions: response.data.analyzedInstructions,
-      // winePairing: response.data.winePairing,
-      nutrition: response.data.nutrition,
+      id: response.data.id, //evaluar si es este id o el que genera unicos
+      name: response.data.title,
+      image: response.data.image,
+      summary: response.data.summary, //resumen
+      healthScore: response.data.healthScore,
+      steps: response.data.analyzedInstructions[0]?.steps.map((e) => e.step),
+      diets: response.data.diets,
     };
     return res.status(200).json(recipe);
   } catch (error) {
@@ -74,7 +71,7 @@ const searchByName = async (req, res) => {
 };
 
 const postRecipe = async (req, res) => {
-  const { name, image, summary, healthScore, steps } = req.body;
+  const { name, image, summary, healthScore, steps, diets } = req.body;
 
   try {
     const [recipe, created] = await Recipe.findOrCreate({
@@ -85,6 +82,7 @@ const postRecipe = async (req, res) => {
         summary,
         healthScore,
         steps,
+        diets,
       },
     });
     return res.status(200).json(recipe);
