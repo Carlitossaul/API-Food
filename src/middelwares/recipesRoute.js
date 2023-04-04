@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
+const { Recipe } = require("../db");
 
 const getDetail = async (req, res) => {
   const { id } = req.params;
@@ -72,7 +73,30 @@ const searchByName = async (req, res) => {
   }
 };
 
+const postRecipe = async (req, res) => {
+  const { name, image, summary, healthScore, steps } = req.body;
+
+  try {
+    const [recipe, created] = await Recipe.findOrCreate({
+      where: {
+        name,
+        image,
+        summary,
+        healthScore,
+        steps,
+      },
+    });
+    return res.status(200).json(recipe);
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
+const getDiets = async (req, res) => {};
+
 module.exports = {
   getDetail,
   searchByName,
+  postRecipe,
+  getDiets,
 };
