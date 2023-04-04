@@ -5,6 +5,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
+    // esto es una clase y cada registro va a generar una instancia.
     "recipe",
     {
       //define es un metodo de sequalize que me va aprmitir definir un modelo.
@@ -36,7 +37,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: false, //para que no aparezca createdAt en la consola
+      timestamps: false, //para que no aparezca fecha en que se creo, createdAt en la consola
       updatedAt: false, //para que no aparezca updateAt en la consola
     }
   );

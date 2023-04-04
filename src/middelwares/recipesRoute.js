@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
-const { Recipe } = require("../db");
+const { Recipe, Diets } = require("../db");
 
 const getDetail = async (req, res) => {
   const { id } = req.params;
@@ -78,6 +78,7 @@ const postRecipe = async (req, res) => {
 
   try {
     const [recipe, created] = await Recipe.findOrCreate({
+      //aca lo crea al recipe en la base de datos
       where: {
         name,
         image,
@@ -92,7 +93,18 @@ const postRecipe = async (req, res) => {
   }
 };
 
-const getDiets = async (req, res) => {};
+const getDiets = async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch?diet=whole30|ketogenic|vegetarian|lacto-vegetarian|ovo-vegetarian|vegan|pescetarian|paleo|primal|gluten free|dairy free|lactose intolerant|ovo-lacto vegetarian&apiKey=${API_KEY}`
+    );
+    console.log(response.data);
+    // const totalDiets = await Diets.bulkCreate(response.data.results);
+    // return res.status(200).json(totalDiets);
+  } catch (error) {
+    return res.status(400).json(error.message);
+  }
+};
 
 module.exports = {
   getDetail,

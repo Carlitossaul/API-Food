@@ -16,5 +16,6 @@ const router = Router();
 router.get("/recipes/:id", getDetail);
 router.get("/recipes", searchByName);
 router.post("/recipes", postRecipe);
+router.get("/diets", getDiets);
 
 module.exports = router;
