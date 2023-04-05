@@ -5,26 +5,30 @@ const { Recipe, Diets } = require("../db");
 
 const getDetail = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  const response = await axios.get(
-    `https://api.spoonacular.com/recipes/${id}/information?addRecipeInformation=true&apiKey=${API_KEY}`
-  );
 
   try {
-    let recipe = {
-      id: response.data.id, //evaluar si es este id o el que genera unicos
-      name: response.data.title,
-      image: response.data.image,
-      summary: response.data.summary, //resumen
-      healthScore: response.data.healthScore,
-      steps: response.data.analyzedInstructions[0]?.steps.map((e) => e.step),
-      diets: response.data.diets,
-    };
-    return res.status(200).json(recipe);
+    let receta = await Recipe.findByPk(id);
+
+    if (receta) {
+      return res.status(200).json(receta);
+    } else {
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${id}/information?addRecipeInformation=true&apiKey=${API_KEY}`
+      );
+      let recipe = {
+        id: response.data.id, //evaluar si es este id o el que genera unicos
+        name: response.data.title,
+        image: response.data.image,
+        summary: response.data.summary, //resumen
+        healthScore: response.data.healthScore,
+        steps: response.data.analyzedInstructions[0]?.steps.map((e) => e.step),
+        diets: response.data.diets,
+        // diets: response.data.diets.map((element) => ({ name: element })),
+      };
+      return res.status(200).json(recipe);
+    }
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Hubo un error al procesar la respuesta de la API" });
+    return res.status(500).json({ error: error.message });
   }
 };
 

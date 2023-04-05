@@ -40,7 +40,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Recipe, Diets } = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+Recipe.belongsToMany(Diets, { through: "RecipeDiets" });
+Diets.belongsToMany(Recipe, { through: "RecipeDiets" });
 
 module.exports = {
   // desarmo el objeto y lo mando(no es una copia)
