@@ -17,27 +17,6 @@ const searchByName = async (req, res) => {
   }
 };
 
-const postRecipe = async (req, res) => {
-  const { name, image, summary, healthScore, steps, diets } = req.body;
-
-  try {
-    const [recipe, created] = await Recipe.findOrCreate({
-      //aca lo crea al recipe en la base de datos
-      where: {
-        name,
-        image,
-        summary,
-        healthScore,
-        steps,
-        diets,
-      },
-    });
-    return res.status(200).json(recipe);
-  } catch (error) {
-    res.status(500).json({ message: error });
-  }
-};
-
 const getDiets = async (req, res) => {
   try {
     const response = await axios.get(
@@ -53,6 +32,5 @@ const getDiets = async (req, res) => {
 
 module.exports = {
   searchByName,
-  postRecipe,
   getDiets,
 };

@@ -16,6 +16,7 @@ const getDetailById = async (id, source) => {
       healthScore: response.data.healthScore,
       steps: response.data.analyzedInstructions[0]?.steps.map((e) => e.step),
       dieta: response.data.diets,
+      created: false,
       // diets: response.data.diets.map((element) => ({ name: element })),
     };
     return recipe;

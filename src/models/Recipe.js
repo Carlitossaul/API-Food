@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: [],
       },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {
       timestamps: false, //para que no aparezca fecha en que se creo, createdAt en la consola
