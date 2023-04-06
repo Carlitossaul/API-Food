@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
     // esto es una clase y cada registro va a generar una instancia.
-    "recipe",
+    "Recipe",
     {
       //define es un metodo de sequalize que me va aprmitir definir un modelo.
       id: {
@@ -21,6 +21,8 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMpPJcpfNsd72LL2p69XEQikjQq5Y-IUM_kg&usqp=CAU",
       },
       summary: {
         //resumen del plato
@@ -28,12 +30,18 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       healthScore: {
+        //nivel de comida saludable
         type: DataTypes.INTEGER,
         allowNull: false,
       },
       steps: {
         type: DataTypes.STRING(1000),
         allowNull: false,
+      },
+      diets: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+        defaultValue: [],
       },
     },
     {
