@@ -2,28 +2,29 @@ const { Recipe, Diet } = require("../db");
 const { Op } = require("sequelize");
 
 const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
-  const [recipe, created] = await Recipe.findOrCreate({
-    //aca lo crea al recipe en la base de datos
-    where: {
+  try {
+    const recipe = await Recipe.create({
       name,
       image,
       summary,
       healthScore,
       steps,
-      // diets,
-    },
-  });
-  const dietsToAdd = await Diet.findAll({
-    where: {
-      name: {
-        [Op.in]: diets ? diets : [],
-      },
-    },
-  });
-  await recipe.addDiets(dietsToAdd);
-  return recipe;
+      diets,
+    });
+
+    if (diets) {
+      const dietsToAdd = await Diet.findAll({
+        where: {
+          name: diets,
+        },
+      });
+      await recipe.addDiets(dietsToAdd); // a lo que creamos le agregamos lo que conincidio con el nombre
+    }
+
+    return recipe;
+  } catch (error) {
+    throw new Error("Could not create recipe: " + error.message);
+  }
 };
 
-module.exports = {
-  postRecipe,
-};
+module.exports = { postRecipe };

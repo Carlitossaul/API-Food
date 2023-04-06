@@ -14,7 +14,7 @@ const getDetailById = async (id, source) => {
       image: response.data.image,
       summary: response.data.summary, //resumen
       healthScore: response.data.healthScore,
-      steps: elem.analyzedInstructions?.[0]?.steps?.map((e) => e.step),
+      steps: response.analyzedInstructions?.[0]?.steps?.map((e) => e.step),
       dieta: response.data.diets,
       created: false,
       // diets: response.data.diets.map((element) => ({ name: element })),
