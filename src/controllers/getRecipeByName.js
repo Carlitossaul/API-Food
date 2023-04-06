@@ -13,6 +13,7 @@ const cleanArray = (array) =>
       summary: elem.summary,
       healthScore: elem.healthScore,
       steps: elem.analyzedInstructions?.[0]?.steps?.map((e) => e.step),
+      diets: elem.diets,
       created: false,
     };
   });

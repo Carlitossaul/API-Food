@@ -1,4 +1,5 @@
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
+const { Op } = require("sequelize");
 
 const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
   const [recipe, created] = await Recipe.findOrCreate({
@@ -9,9 +10,17 @@ const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
       summary,
       healthScore,
       steps,
-      diets,
+      // diets,
     },
   });
+  const dietsToAdd = await Diet.findAll({
+    where: {
+      name: {
+        [Op.in]: diets ? diets : [],
+      },
+    },
+  });
+  await recipe.addDiets(dietsToAdd);
   return recipe;
 };
 

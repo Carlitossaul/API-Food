@@ -38,11 +38,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(1000),
         allowNull: false,
       },
-      diets: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-        defaultValue: [],
-      },
       created: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
