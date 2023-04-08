@@ -45,7 +45,7 @@ const getRecipeByName = async (name) => {
 
   let recipesApiRaw = (
     await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=100&query=${name}`
     )
   ).data.results;
 
@@ -58,3 +58,7 @@ module.exports = {
   getRecipeByName,
   getAllRecipe,
 };
+
+//   let filteredApi = await recipesApiRaw.filter((recipe) =>
+//   recipe.name.toLowerCase() === name.toLowerCase()
+// );

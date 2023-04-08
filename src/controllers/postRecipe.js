@@ -18,7 +18,9 @@ const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
           name: diets,
         },
       });
-      await recipe.addDiets(dietsToAdd); // a lo que creamos le agregamos lo que conincidio con el nombre
+      for (let i = 0; i < dietsToAdd.length; i++) {
+        await recipe.addDiet(dietsToAdd[i]); // agregamos cada dieta encontrada a la receta
+      }
     }
 
     return recipe;
