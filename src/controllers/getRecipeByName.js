@@ -23,7 +23,7 @@ const getAllRecipe = async () => {
 
   let recipesApiRaw = (
     await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=100`
     )
   ).data.results;
 
@@ -51,11 +51,7 @@ const getRecipeByName = async (name) => {
 
   const recipesApi = cleanArray(recipesApiRaw);
 
-  const filteredApi = recipesApi.filter((recipe) =>
-    recipe.name.toLowerCase().includes(name.toLowerCase())
-  );
-
-  return [...filteredApi, ...recipesDataBase];
+  return [...recipesApi, ...recipesDataBase];
 };
 
 module.exports = {
