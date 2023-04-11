@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
         allowNull: false, //permitir valores nulos?
         unique: true,
       },
+      diets: {
+        type: DataTypes.ARRAY(DataTypes.STRING), //DataTypes tipo de dato
+        allowNull: false, //permitir valores nulos?
+      },
       image: {
         type: DataTypes.STRING,
         allowNull: false,
