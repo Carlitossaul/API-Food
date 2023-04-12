@@ -20,9 +20,9 @@ module.exports = (sequelize) => {
         unique: true,
       },
       diets: {
-        type: DataTypes.STRING, //DataTypes tipo de dato
-        // type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false, //permitir valores nulos?
+        // type: DataTypes.STRING, //DataTypes tipo de dato
       },
 
       image: {
