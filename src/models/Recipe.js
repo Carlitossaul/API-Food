@@ -20,14 +20,16 @@ module.exports = (sequelize) => {
         unique: true,
       },
       diets: {
-        type: DataTypes.ARRAY(DataTypes.STRING), //DataTypes tipo de dato
+        type: DataTypes.STRING, //DataTypes tipo de dato
+        // type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false, //permitir valores nulos?
       },
+
       image: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMpPJcpfNsd72LL2p69XEQikjQq5Y-IUM_kg&usqp=CAU",
+          "https://s1.eestatic.com/2017/03/13/cocinillas/cocinillas_200492147_116306553_1706x960.jpg",
       },
       summary: {
         //resumen del plato

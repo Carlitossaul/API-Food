@@ -12,7 +12,9 @@ const cleanArray = (array) =>
       image: elem.image,
       summary: elem.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""), //resumen
       healthScore: elem.healthScore,
-      steps: elem.analyzedInstructions?.[0]?.steps?.map((e) => e.step),
+      steps: elem.analyzedInstructions[0]?.steps
+        .map((ste) => `${ste.number}. ${ste.step}`)
+        .join(" ✂ "),
       diets: elem.diets,
       created: false,
     };

@@ -20,7 +20,7 @@ const getDetailById = async (id, source) => {
       healthScore: response.data.healthScore,
       steps: response.data.analyzedInstructions[0]?.steps
         .map((ste) => `${ste.number}. ${ste.step}`)
-        .join(" ✂ "), // ! importante al usar el emoji ✂,
+        .join(" ✂ "),
       diets: response.data.diets,
       created: false,
       // diets: response.data.diets.map((element) => ({ name: element })),
