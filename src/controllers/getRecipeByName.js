@@ -10,7 +10,7 @@ const cleanArray = (array) =>
       id: elem.id,
       name: elem.title,
       image: elem.image,
-      summary: elem.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""), //resumen
+      summary: elem.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ""),
       healthScore: elem.healthScore,
       steps: elem.analyzedInstructions[0]?.steps
         .map((ste) => `${ste.number}. ${ste.step}`)

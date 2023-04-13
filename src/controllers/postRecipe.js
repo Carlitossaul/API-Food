@@ -2,6 +2,8 @@ const { Recipe, Diet } = require("../db");
 const { Op } = require("sequelize");
 
 const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
+  // let health = Number(healthScore);
+  // console.log(health);
   try {
     const recipe = await Recipe.create({
       name,
@@ -19,7 +21,7 @@ const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
         },
       });
       for (let i = 0; i < dietsToAdd.length; i++) {
-        await recipe.addDiet(dietsToAdd[i]); // agregamos cada dieta encontrada a la receta
+        await recipe.addDiet(dietsToAdd[i]);
       }
     }
 

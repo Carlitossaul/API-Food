@@ -26,10 +26,13 @@ module.exports = (sequelize) => {
       },
 
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
+        // validate: {
+        //   isUrl: true,
+        // },
         defaultValue:
-          "https://s1.eestatic.com/2017/03/13/cocinillas/cocinillas_200492147_116306553_1706x960.jpg",
+          "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjA1NDF8MHwxfHNlYXJjaHw1fHxmb29kfGVufDB8fHx8MTY4MTM0MzE5Ng&ixlib=rb-4.0.3&q=80&w=1080",
       },
       summary: {
         //resumen del plato
