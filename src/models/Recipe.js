@@ -22,17 +22,11 @@ module.exports = (sequelize) => {
       diets: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false, //permitir valores nulos?
-        // type: DataTypes.STRING, //DataTypes tipo de dato
       },
 
       image: {
         type: DataTypes.TEXT,
         allowNull: false,
-        // validate: {
-        //   isUrl: true,
-        // },
-        defaultValue:
-          "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjA1NDF8MHwxfHNlYXJjaHw1fHxmb29kfGVufDB8fHx8MTY4MTM0MzE5Ng&ixlib=rb-4.0.3&q=80&w=1080",
       },
       summary: {
         //resumen del plato
@@ -40,7 +34,14 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       healthScore: {
-        //nivel de comida saludable
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      servings: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      readyInMinutes: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

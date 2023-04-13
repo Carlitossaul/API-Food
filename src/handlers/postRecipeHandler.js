@@ -1,7 +1,16 @@
 const { postRecipe } = require("../controllers/postRecipe");
 
 const postRecipeHandler = async (req, res) => {
-  const { name, image, summary, healthScore, steps, diets } = req.body;
+  const {
+    name,
+    image,
+    summary,
+    healthScore,
+    steps,
+    diets,
+    servings,
+    readyInMinutes,
+  } = req.body;
   console.log(diets);
   try {
     const recipe = await postRecipe(
@@ -10,7 +19,9 @@ const postRecipeHandler = async (req, res) => {
       summary,
       healthScore,
       steps,
-      diets
+      diets,
+      servings,
+      readyInMinutes
     );
 
     return res.status(200).json(recipe);

@@ -1,9 +1,16 @@
 const { Recipe, Diet } = require("../db");
 const { Op } = require("sequelize");
 
-const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
-  // let health = Number(healthScore);
-  // console.log(health);
+const postRecipe = async (
+  name,
+  image,
+  summary,
+  healthScore,
+  steps,
+  diets,
+  readyInMinutes,
+  servings
+) => {
   try {
     const recipe = await Recipe.create({
       name,
@@ -12,6 +19,8 @@ const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
       healthScore,
       steps,
       diets,
+      servings,
+      readyInMinutes,
     });
 
     if (diets) {
