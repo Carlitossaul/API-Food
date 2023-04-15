@@ -14,7 +14,7 @@ const cleanArray = (array) =>
       healthScore: elem.healthScore,
       steps: elem.analyzedInstructions[0]?.steps
         .map((ste) => `${ste.number}. ${ste.step}`)
-        .join(" ✂ "),
+        .join("  "),
       diets: elem.diets,
       created: false,
     };

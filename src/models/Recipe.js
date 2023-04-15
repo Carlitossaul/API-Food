@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING, //DataTypes tipo de dato
         allowNull: false, //permitir valores nulos?
-        unique: true,
+        unique: false,
       },
       diets: {
         type: DataTypes.ARRAY(DataTypes.STRING),

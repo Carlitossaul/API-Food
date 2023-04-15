@@ -23,7 +23,6 @@ const getDetailById = async (id, source) => {
         .join("  "),
       diets: response.data.diets,
       created: false,
-      ingredients: response.data.extendedIngredients,
       servings: response.data.servings,
       readyInMinutes: response.data.readyInMinutes,
     };
