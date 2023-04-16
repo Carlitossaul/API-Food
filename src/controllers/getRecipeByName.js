@@ -39,7 +39,8 @@ const getRecipeByName = async (name) => {
     where: !!name
       ? {
           name: {
-            [Op.substring]: name.toLowerCase(),
+            [Op.iLike]: `%${name}%`,
+            // [Op.substring]: name.toLowerCase(),
           },
         }
       : {},
