@@ -50,7 +50,7 @@ const getAllRecipe = async () => {
 
   const recipesApi = cleanArray(recipesApiRaw);
 
-  if (recipesApi.length === 0) return recipesDataBase;
+  // if (recipesApi.length === 0) return recipesDataBase;
 
   return [...recipesDataBase, ...recipesApi];
 };
