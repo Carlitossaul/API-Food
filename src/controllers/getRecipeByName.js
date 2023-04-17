@@ -36,6 +36,9 @@ const getAllRecipe = async () => {
     case 4:
       apiKey = API_KEY4;
       break;
+    case 5:
+      apiKey = API_KEY5;
+      break;
     default:
       apiKey = API_KEY;
   }
@@ -45,14 +48,14 @@ const getAllRecipe = async () => {
 
     let recipesApiRaw = (
       await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY4}&number=100`
+        `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY5}&number=100`
       )
     ).data.results;
 
     const recipesApi = cleanArray(recipesApiRaw);
     return [...recipesDataBase, ...recipesApi];
   } catch (error) {
-    if (index >= 4) {
+    if (index >= 5) {
       index = 1;
     } else {
       index++;
