@@ -4,25 +4,6 @@ const axios = require("axios");
 const { Recipe } = require("../db");
 const { Op } = require("sequelize");
 
-// let apiKey;
-
-// switch (requestType) {
-//   case "type_1":
-//     apiKey = API_KEY;
-//     break;
-//   case "type_2":
-//     apiKey = API_KEY2;
-//     break;
-//   case "type_3":
-//     apiKey = API_KEY3;
-//     break;
-//   case "type_4":
-//     apiKey = API_KEY4;
-//     break;
-//   default:
-//     apiKey = API_KEY5;
-// }
-
 const cleanArray = (array) =>
   array.map((elem) => {
     return {
@@ -40,19 +21,44 @@ const cleanArray = (array) =>
   });
 
 const getAllRecipe = async () => {
-  let recipesDataBase = await Recipe.findAll();
+  let index = 0;
+  let apiKey;
+  switch (index) {
+    case 0:
+      apiKey = API_KEY;
+      break;
+    case 2:
+      apiKey = API_KEY2;
+      break;
+    case 3:
+      apiKey = API_KEY3;
+      break;
+    case 4:
+      apiKey = API_KEY4;
+      break;
+    default:
+      apiKey = API_KEY;
+  }
 
-  let recipesApiRaw = (
-    await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY4}&number=100`
-    )
-  ).data.results;
+  try {
+    let recipesDataBase = await Recipe.findAll();
 
-  const recipesApi = cleanArray(recipesApiRaw);
+    let recipesApiRaw = (
+      await axios.get(
+        `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${apiKey}&number=100`
+      )
+    ).data.results;
 
-  // if (recipesApi.length === 0) return recipesDataBase;
-
-  return [...recipesDataBase, ...recipesApi];
+    const recipesApi = cleanArray(recipesApiRaw);
+    return [...recipesDataBase, ...recipesApi];
+  } catch (error) {
+    if (index >= 4) {
+      index = 1;
+    } else {
+      index++;
+    }
+    return [];
+  }
 };
 
 const getRecipeByName = async (name) => {
