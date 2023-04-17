@@ -44,7 +44,7 @@ const getAllRecipe = async () => {
 
   let recipesApiRaw = (
     await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=100`
+      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY4}&number=100`
     )
   ).data.results;
 
