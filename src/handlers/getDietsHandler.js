@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { API_KEY } = process.env;
+const { API_KEY, API_KEY4 } = process.env;
 const axios = require("axios");
 const { Diet } = require("../db");
 
@@ -9,7 +9,7 @@ const getDietsHandler = async (req, res) => {
   try {
     const apiDietsRaw = (
       await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY4}&number=100&addRecipeInformation=true`
       )
     ).data.results;
 
