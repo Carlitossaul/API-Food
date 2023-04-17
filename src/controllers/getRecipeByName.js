@@ -4,6 +4,8 @@ const axios = require("axios");
 const { Recipe } = require("../db");
 const { Op } = require("sequelize");
 
+let index = 0;
+
 const cleanArray = (array) =>
   array.map((elem) => {
     return {
@@ -21,7 +23,6 @@ const cleanArray = (array) =>
   });
 
 const getAllRecipe = async () => {
-  let index = 0;
   let apiKey;
   switch (index) {
     case 0:
@@ -48,18 +49,15 @@ const getAllRecipe = async () => {
 
     let recipesApiRaw = (
       await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY5}&number=100`
+        `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${apiKey}&number=100`
       )
     ).data.results;
 
     const recipesApi = cleanArray(recipesApiRaw);
     return [...recipesDataBase, ...recipesApi];
   } catch (error) {
-    if (index >= 5) {
-      index = 1;
-    } else {
-      index++;
-    }
+    index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
+    apiKey = [API_KEY, API_KEY2, API_KEY3, API_KEY4, API_KEY5][index]; // asigna la nueva clave de API en función de su valor actual
     return [];
   }
 };
