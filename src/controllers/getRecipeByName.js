@@ -1,8 +1,27 @@
 require("dotenv").config();
-const { API_KEY } = process.env;
+const { API_KEY, API_KEY2, API_KEY3, API_KEY4, API_KEY5 } = process.env;
 const axios = require("axios");
 const { Recipe } = require("../db");
 const { Op } = require("sequelize");
+
+let apiKey;
+
+switch (requestType) {
+  case "type_1":
+    apiKey = API_KEY;
+    break;
+  case "type_2":
+    apiKey = API_KEY2;
+    break;
+  case "type_3":
+    apiKey = API_KEY3;
+    break;
+  case "type_4":
+    apiKey = API_KEY4;
+    break;
+  default:
+    apiKey = API_KEY5;
+}
 
 const cleanArray = (array) =>
   array.map((elem) => {
@@ -25,7 +44,7 @@ const getAllRecipe = async () => {
 
   let recipesApiRaw = (
     await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=100`
+      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${apiKey}&number=100`
     )
   ).data.results;
 
@@ -48,7 +67,7 @@ const getRecipeByName = async (name) => {
 
   let recipesApiRaw = (
     await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=100&query=${name}`
+      `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${apiKey}&number=100&query=${name}`
     )
   ).data.results;
 
