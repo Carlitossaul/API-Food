@@ -1,9 +1,9 @@
 require("dotenv").config();
 const { API_KEY21, API_KEY22, API_KEY23, API_KEY24, API_KEY25 } = process.env;
 const axios = require("axios");
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
 
-let apikey = "78c5b6e91ab7481da11c4288b21acaa7";
+// let apikey = "78c5b6e91ab7481da11c4288b21acaa7";
 let index = 0;
 const getDetailById = async (id, source) => {
   let apiKey;
@@ -30,7 +30,7 @@ const getDetailById = async (id, source) => {
     if (source === "api") {
       id = Number(id);
       let response = await axios.get(
-        `https://api.spoonacular.com/recipes/${id}/information?addRecipeInformation=true&apiKey=${apikey}`
+        `https://api.spoonacular.com/recipes/${id}/information?addRecipeInformation=true&apiKey=${apiKey}`
       );
       let recipe = {
         id: response.data.id,
