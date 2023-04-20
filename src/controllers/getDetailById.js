@@ -44,15 +44,28 @@ const getDetailById = async (id, source) => {
         steps: response.data.analyzedInstructions[0]?.steps
           .map((ste) => `${ste.number}. ${ste.step}`)
           .join("  "),
-        diets: response.data.diets,
+        Diets: response.data.diets,
         created: false,
         servings: response.data.servings,
         readyInMinutes: response.data.readyInMinutes,
       };
       return recipe;
     } else {
-      let receta = await Recipe.findByPk(id);
-      return receta;
+      let receta = await Recipe.findByPk(id, {
+        include: [
+          {
+            model: Diet,
+            attributes: ["name"],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+      });
+
+      const arrayTheDiets = await receta.Diets.map((diet) => diet.name);
+      console.log(arrayTheDiets);
+      return { ...receta.toJSON(), Diets: arrayTheDiets };
     }
   } catch (error) {
     index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
