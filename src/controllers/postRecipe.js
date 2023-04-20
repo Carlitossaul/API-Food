@@ -18,22 +18,15 @@ const postRecipe = async (
       summary,
       healthScore,
       steps,
-      diets,
       servings,
       readyInMinutes,
     });
-
-    if (diets) {
-      const dietsToAdd = await Diet.findAll({
-        where: {
-          name: diets,
-        },
+    if (diets && diets.length > 0) {
+      const dietDb = await Diet.findAll({
+        where: { name: diets },
       });
-      for (let i = 0; i < dietsToAdd.length; i++) {
-        await recipe.addDiet(dietsToAdd[i]);
-      }
+      recipe.addDiet(dietDb);
     }
-
     return recipe;
   } catch (error) {
     throw new Error("Could not create recipe: " + error.message);

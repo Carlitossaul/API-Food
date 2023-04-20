@@ -11,7 +11,7 @@ const postRecipeHandler = async (req, res) => {
     servings,
     readyInMinutes,
   } = req.body;
-  console.log(diets);
+
   try {
     const recipe = await postRecipe(
       name,
