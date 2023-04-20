@@ -12,7 +12,7 @@ const {
   API_KEY15,
 } = process.env;
 const axios = require("axios");
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
 const { Op } = require("sequelize");
 
 let index = 0;
