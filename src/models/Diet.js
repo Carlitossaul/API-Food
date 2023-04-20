@@ -7,16 +7,12 @@ module.exports = (sequelize) => {
     "Diet",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        autoIncrement: true, //Esto generará una nueva receta con un ID único generado por UUID.
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
       },
     },
     {
