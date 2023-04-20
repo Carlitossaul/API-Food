@@ -6,7 +6,7 @@ const { Recipe } = require("../db");
 // let apikey = "78c5b6e91ab7481da11c4288b21acaa7";
 let index = 0;
 const getDetailById = async (id, source) => {
-  let apiKey;
+  let apikey;
   switch (index) {
     case 0:
       apiKey = API_KEY21;
@@ -30,7 +30,7 @@ const getDetailById = async (id, source) => {
     if (source === "api") {
       id = Number(id);
       let response = await axios.get(
-        `https://api.spoonacular.com/recipes/${id}/information?addRecipeInformation=true&apiKey=${apiKey}`
+        `https://api.spoonacular.com/recipes/${id}/information?addRecipeInformation=true&apiKey=${apikey}`
       );
       let recipe = {
         id: response.data.id,
