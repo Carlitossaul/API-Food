@@ -85,7 +85,7 @@ const getAllRecipe = async () => {
   } catch (error) {
     index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey = [API_KEY6, API_KEY7, API_KEY8, API_KEY9, API_KEY10][index]; // asigna la nueva clave de API en función de su valor actual
-    return [];
+    return ["entre al error"];
   }
 };
 
