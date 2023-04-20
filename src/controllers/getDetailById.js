@@ -3,10 +3,10 @@ const { API_KEY21, API_KEY22, API_KEY23, API_KEY24, API_KEY25 } = process.env;
 const axios = require("axios");
 const { Recipe } = require("../db");
 
-// let apikey = "78c5b6e91ab7481da11c4288b21acaa7";
+let apikey = "78c5b6e91ab7481da11c4288b21acaa7";
 let index = 0;
 const getDetailById = async (id, source) => {
-  let apikey;
+  let apiKey;
   switch (index) {
     case 0:
       apiKey = API_KEY21;
