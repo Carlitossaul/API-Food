@@ -29,7 +29,7 @@ const cleanArray = (array) =>
       steps: elem.analyzedInstructions[0]?.steps
         .map((ste) => `${ste.number}. ${ste.step}`)
         .join("  "),
-      diets: elem.diets,
+      Diets: elem.diets,
       created: false,
     };
   });
@@ -57,7 +57,22 @@ const getAllRecipe = async () => {
   }
 
   try {
-    let recipesDataBase = await Recipe.findAll();
+    let recipesDataBaseRaw = await Recipe.findAll({
+      include: [
+        {
+          model: Diet,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+
+    let recipesDataBase = await recipesDataBaseRaw.map((recipe) => {
+      let diets = recipe.Diets.map((elem) => elem.name);
+      return { ...recipe.toJSON(), Diets: diets };
+    });
 
     let recipesApiRaw = (
       await axios.get(
@@ -106,6 +121,15 @@ const getRecipeByName = async (name) => {
             },
           }
         : {},
+      include: [
+        {
+          model: Diet,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
     });
 
     let recipesApiRaw = (
@@ -116,7 +140,12 @@ const getRecipeByName = async (name) => {
 
     const recipesApi = cleanArray(recipesApiRaw);
 
-    return [...recipesApi, ...recipesDataBase];
+    let TheRecipesDB = await recipesDataBase.map((recipe) => {
+      let diets = recipe.Diets.map((elem) => elem.name);
+      return { ...recipe.toJSON(), Diets: diets };
+    });
+
+    return [...TheRecipesDB, ...recipesApi];
   } catch (error) {
     index2 = (index2 + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey2 = [API_KEY11, API_KEY12, API_KEY13, API_KEY14, API_KEY15][index2]; // asigna la nueva clave de API en función de su valor actual
