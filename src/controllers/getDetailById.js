@@ -70,7 +70,7 @@ const getDetailById = async (id, source) => {
   } catch (error) {
     index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey = [API_KEY21, API_KEY22, API_KEY23, API_KEY24, API_KEY25][index]; // asigna la nueva clave de API en función de su valor actual
-    return [];
+    return ["Hola entre en el error..."];
   }
 };
 
