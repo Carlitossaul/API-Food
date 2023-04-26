@@ -46,7 +46,7 @@ const getDiets = async (req, res) => {
   } catch (error) {
     index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey = [API_KEY16, API_KEY17, API_KEY18, API_KEY19, API_KEY20][index]; // asigna la nueva clave de API en función de su valor actual
-    return res.status(400).json({ error: error.message });
+    throw new Error("Se acabaron las apikey disponibles");
   }
 };
 

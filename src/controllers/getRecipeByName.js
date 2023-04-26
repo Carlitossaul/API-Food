@@ -85,7 +85,7 @@ const getAllRecipe = async () => {
   } catch (error) {
     index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey = [API_KEY6, API_KEY7, API_KEY8, API_KEY9, API_KEY10][index]; // asigna la nueva clave de API en función de su valor actual
-    return ["entre al error"];
+    throw new Error("Se acabaron las apikey disponibles");
   }
 };
 
@@ -149,7 +149,7 @@ const getRecipeByName = async (name) => {
   } catch (error) {
     index2 = (index2 + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey2 = [API_KEY11, API_KEY12, API_KEY13, API_KEY14, API_KEY15][index2]; // asigna la nueva clave de API en función de su valor actual
-    return [];
+    throw new Error("Se acabaron las apikey disponibles");
   }
 };
 
