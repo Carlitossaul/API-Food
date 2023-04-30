@@ -13,3 +13,4 @@ conn.sync({ force: true }).then(() => {
 
 // eliminar todas las tablas y volverlas a crear com estén definidas en el modelo
 // alter:true modificar las tablas ya existentes en base a como estén definidas en el modelo
+//
