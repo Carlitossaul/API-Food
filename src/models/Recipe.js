@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       },
       summary: {
         //resumen del plato
-        type: DataTypes.STRING(1000),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       healthScore: {
@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       steps: {
-        type: DataTypes.STRING(1000),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       created: {
