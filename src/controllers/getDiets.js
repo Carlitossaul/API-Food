@@ -26,23 +26,28 @@ const getDiets = async (req, res) => {
       apiKey = API_KEY16;
   }
   try {
-    const apiDietsRaw = (
-      await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&number=100&addRecipeInformation=true`
-      )
-    ).data.results;
+    let verify = Diet.findAll();
+    if (!verify.length) {
+      const apiDietsRaw = (
+        await axios.get(
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&number=100&addRecipeInformation=true`
+        )
+      ).data.results;
 
-    let dietasRepetidas = await apiDietsRaw.map((elem) => elem.diets).flat(1);
+      let dietasRepetidas = await apiDietsRaw.map((elem) => elem.diets).flat(1);
 
-    let dietas = [...new Set(dietasRepetidas)];
+      let dietas = [...new Set(dietasRepetidas)];
 
-    dietas.map(async (dietName) => {
-      await Diet.findOrCreate({
-        where: { name: dietName },
+      dietas.map(async (dietName) => {
+        await Diet.findOrCreate({
+          where: { name: dietName },
+        });
       });
-    });
 
-    return dietas;
+      return dietas;
+    } else {
+      return verify;
+    }
   } catch (error) {
     index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
     apiKey = [API_KEY16, API_KEY17, API_KEY18, API_KEY19, API_KEY20][index]; // asigna la nueva clave de API en función de su valor actual
