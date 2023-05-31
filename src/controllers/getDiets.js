@@ -60,9 +60,9 @@ module.exports = {
 };
 
 /*
-El código que muestras asigna a la variable `apiKey` uno de los elementos del arreglo `[API_KEY16, API_KEY17, API_KEY18, API_KEY19, API_KEY20]`, dependiendo del valor de la variable `index`.
-
-Por ejemplo, si `index` es igual a `0`, entonces `apiKey` se asignará a `API_KEY16`. Si `index` es igual a `1`, entonces `apiKey` se asignará a `API_KEY17`, y así sucesivamente.
-
-En resumen, este código utiliza la variable `index` como un índice para acceder a uno de los elementos de un arreglo y asignarlo a la variable `apiKey`.
+Se asigna a la variable `apiKey` uno de los elementos del arreglo `[API_KEY16, API_KEY17, API_KEY18, API_KEY19, API_KEY20]`, 
+dependiendo del valor de la variable `index`. Por ejemplo, si `index` es igual a `0`, entonces `apiKey` se asignará a 
+`API_KEY16`. Si `index` es igual a `1`, entonces `apiKey` se asignará a `API_KEY17`, y así sucesivamente.
+En resumen, este código utiliza la variable `index` como un índice para acceder a uno de los elementos de un arreglo 
+y asignarlo a la variable `apiKey`.
 */

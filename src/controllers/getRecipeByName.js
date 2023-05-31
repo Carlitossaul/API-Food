@@ -157,7 +157,3 @@ module.exports = {
   getRecipeByName,
   getAllRecipe,
 };
-
-//   let filteredApi = await recipesApiRaw.filter((recipe) =>
-//   recipe.name.toLowerCase() === name.toLowerCase()
-// );
