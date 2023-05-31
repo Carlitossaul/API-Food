@@ -11,7 +11,7 @@ const getRecipeByNameHandler = async (req, res) => {
     console.log(name);
     return res.status(200).json(results);
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    return res.status(400).json(error);
   }
 };
 
