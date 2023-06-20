@@ -7,8 +7,8 @@ const postRecipe = async (
   healthScore,
   steps,
   diets,
-  readyInMinutes,
-  servings
+  servings,
+  readyInMinutes
 ) => {
   const recipe = await Recipe.create({
     name,

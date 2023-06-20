@@ -64,7 +64,7 @@ const getDetailById = async (id, source) => {
       });
 
       const arrayTheDiets = await receta.Diets.map((diet) => diet.name);
-      console.log(arrayTheDiets);
+
       return { ...receta.toJSON(), Diets: arrayTheDiets };
     }
   } catch (error) {

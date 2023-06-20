@@ -11,7 +11,16 @@ const postRecipeHandler = async (req, res) => {
     servings,
     readyInMinutes,
   } = req.body;
-
+  console.log(
+    name,
+    image,
+    summary,
+    healthScore,
+    steps,
+    diets,
+    servings,
+    readyInMinutes
+  );
   try {
     const recipe = await postRecipe(
       name,
