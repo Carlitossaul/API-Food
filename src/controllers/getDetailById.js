@@ -3,7 +3,6 @@ const { API_KEY21, API_KEY22, API_KEY23, API_KEY24, API_KEY25 } = process.env;
 const axios = require("axios");
 const { Recipe, Diet } = require("../db");
 
-// let apikey = "78c5b6e91ab7481da11c4288b21acaa7";
 let index = 0;
 const getDetailById = async (id, source) => {
   let apiKey;
@@ -68,9 +67,9 @@ const getDetailById = async (id, source) => {
       return { ...receta.toJSON(), Diets: arrayTheDiets };
     }
   } catch (error) {
-    index = (index + 1) % 5; // incrementa el valor de index y lo hace circular entre 0 y 4
-    apiKey = [API_KEY21, API_KEY22, API_KEY23, API_KEY24, API_KEY25][index]; // asigna la nueva clave de API en función de su valor actual
-    throw new Error("Se acabaron las apikey disponibles");
+    index = (index + 1) % 5;
+    apiKey = [API_KEY21, API_KEY22, API_KEY23, API_KEY24, API_KEY25][index];
+    throw new Error("No more available apikey");
   }
 };
 
